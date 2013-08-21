@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+		
+		 <link rel="stylesheet" href="libs/leaflet/leaflet.css" />
+		 <!--[if lte IE 8]>
+			 <link rel="stylesheet" href="libs/leaflet/leaflet.ie.css" />
+		 <![endif]-->
+
+        <title>Hello World</title>
+    </head>
+    <body>
+        <div class="app">
+            <div id="deviceready" class="blink">
+                <p class="event listening">Connecting to Device</p>
+                <p class="event received">Device is Ready</p>
+            </div>
+			
+			 <div id="map-canvas"></div>
+			 <p>Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a></p>
+        </div>
+        <script type="text/javascript" src="phonegap.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+		<script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+		
+		<script src="libs/leaflet/leaflet.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+		<script>
+
+			 resizeMap();
+		function resizeMap(){
+			 $("#map-canvas").height($(window).height()-90);//50+  $('#searchBar').height() + $('.navbar').height()));
+		}
+	
+$(window).resize(function() {
+	resizeMap();
+});
+		
+			var map = L.map('map-canvas').setView([43, -75], 13);
+
+			L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+				maxZoom: 18
+			}).addTo(map);
+
+
+			L.marker([45.423, -75.679]).addTo(map)
+				.bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
+
+			var popup = L.popup();
+
+			function onMapClick(e) {
+				popup
+					.setLatLng(e.latlng)
+					.setContent("You clicked the map at " + e.latlng.toString())
+					.openOn(map);
+			}
+
+			map.on('click', onMapClick);
+	</script>
+    </body>
+</html>
