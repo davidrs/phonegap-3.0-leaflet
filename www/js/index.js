@@ -43,7 +43,7 @@ var app = {
 
 		map.on('click', onMapClick);
 		
-		resizeMap();
+		map.resizeMap();
 		
     },
     // Bind Event Listeners
@@ -72,9 +72,8 @@ var app = {
         console.log('Received Event: ' + id);
     },
 	resizeMap: function() {
-		 $("#map-canvas").height($(window).height()-90);//50+  $('#searchBar').height() + $('.navbar').height()));
+		 $("#map-canvas").height(Math.max(100,$(window).height()-90));// TODO set 
 	}
-	
 	
 	
 };
