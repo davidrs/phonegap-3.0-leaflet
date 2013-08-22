@@ -20,7 +20,7 @@ var app = {
     // Application Constructor
     initialize: function() {
         this.bindEvents();	
-		go();
+		//go(); // DRS: requires file plugin, which broke build last try. 
 	
 		var map = L.map('map-canvas').setView([43, -75], 13);
 
@@ -70,5 +70,17 @@ var app = {
         receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
-    }
+    },
+	resizeMap: function() {
+		 $("#map-canvas").height($(window).height()-90);//50+  $('#searchBar').height() + $('.navbar').height()));
+	}
+	
+	
+	
 };
+
+	
+
+	$(window).resize(function() {
+		app.resizeMap();
+	});
