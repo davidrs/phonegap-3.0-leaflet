@@ -19,7 +19,32 @@
 var app = {
     // Application Constructor
     initialize: function() {
-        this.bindEvents();
+        this.bindEvents();	
+		go();
+	
+		var map = L.map('map-canvas').setView([43, -75], 13);
+
+		L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			maxZoom: 18
+		}).addTo(map);
+
+
+		L.marker([45.423, -75.679]).addTo(map)
+			.bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
+
+		var popup = L.popup();
+
+		function onMapClick(e) {
+			popup
+				.setLatLng(e.latlng)
+				.setContent("You clicked the map at " + e.latlng.toString())
+				.openOn(map);
+		}
+
+		map.on('click', onMapClick);
+		
+		resizeMap();
+		
     },
     // Bind Event Listeners
     //
