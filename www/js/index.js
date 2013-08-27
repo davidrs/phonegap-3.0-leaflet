@@ -20,11 +20,10 @@ var app = {
     // Application Constructor
     initialize: function() {
         this.bindEvents();	
-		//go(); // DRS: requires file plugin, which broke build last try. 
 			
 		app.resizeMap();
 		
-		var map = L.map('map-canvas').setView([43, -75], 13);
+		var map = L.map('map-canvas').setView([45.423, -75.679], 13);
 		
 		//this works, but is online:
 		/*
@@ -33,8 +32,9 @@ var app = {
 		}).addTo(map);
 		*/
 		
+		//TODO build something to fall back to web if not found.
 		L.tileLayer('img/mapTiles/{z}/{x}/{y}.png', {
-			maxZoom: 16
+			maxZoom: 17
 		}).addTo(map);
 
 
