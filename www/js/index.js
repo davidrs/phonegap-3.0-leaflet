@@ -21,11 +21,20 @@ var app = {
     initialize: function() {
         this.bindEvents();	
 		//go(); // DRS: requires file plugin, which broke build last try. 
-	
+			
+		app.resizeMap();
+		
 		var map = L.map('map-canvas').setView([43, -75], 13);
-
+		
+		//this works, but is online:
+		/*
 		L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 			maxZoom: 18
+		}).addTo(map);
+		*/
+		
+		L.tileLayer('img/mapTiles/{z}/{x}/{y}.png', {
+			maxZoom: 16
 		}).addTo(map);
 
 
@@ -42,8 +51,6 @@ var app = {
 		}
 
 		map.on('click', onMapClick);
-		
-		map.resizeMap();
 		
     },
     // Bind Event Listeners
